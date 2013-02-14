@@ -32,18 +32,18 @@ function wp_get_domain_name_from_uri($uri){
 	preg_match("/^(http:\/\/)?([^\/]+)/i", $uri, $matches);
 	$host = $matches[2];
 	preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
-	return $matches[0];	   
+	return $matches[0];
 }
 
 
 function parse_external_links($matches){
 	if ( wp_get_domain_name_from_uri($matches[3]) != wp_get_domain_name_from_uri($_SERVER["HTTP_HOST"]) ){
-		return '<a href="' . $matches[2] . '//' . $matches[3] . '"' . $matches[1] . $matches[4] . ' class="extlink">' . $matches[5] . '</a>';	 
+		return '<a href="' . $matches[2] . '//' . $matches[3] . '"' . $matches[1] . $matches[4] . ' class="extlink">' . $matches[5] . '</a>';
 	} else {
 		return '<a href="' . $matches[2] . '//' . $matches[3] . '"' . $matches[1] . $matches[4] . '>' . $matches[5] . '</a>';
 	}
 }
-	
+
 
 function wp_external_links($text) {
 	global $txfx_iel_use_target_blank;
